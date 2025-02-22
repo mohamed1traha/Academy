@@ -1,0 +1,40 @@
+{% extends 'blog_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/blog/profile.css' %}">
+
+<div class="container">
+    <p class="profile-link">
+        {{ request.user.username }} 
+        <a href="{% url 'edit_profile' request.user.id %}">{% trans "Edit Profile" %}</a>
+    </p>
+
+    <h2>{% trans "Posts" %}</h2>
+
+    <div class="posts-container">
+        {% for post in post %}
+            <div class="post">
+                
+                <h3 class="post-title">{{ post.title }}</h3>
+                
+                {% if post.img %}
+                    <img src="{{ post.img.url }}" alt="{{ post.title }}" class="post-image">
+                {% endif %}
+                
+                <p class="post-content">{{ post.content|truncatewords:30 }}</p>
+                
+                {% if request.user == post.user %}
+                    <a href="{% url 'edit_post' post.id %}" class="edit-btn">{% trans "Edit Post" %}</a>
+                {% endif %}
+                
+            </div>
+        {% empty %}
+            <p style="text-align: center; font-size: 18px; color: #777;">{% trans "No posts to display." %}</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

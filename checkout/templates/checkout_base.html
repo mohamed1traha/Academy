@@ -1,0 +1,54 @@
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% trans "Programming Academy" %} {% endblock %}</title>
+    
+    <!-- Add Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Add custom CSS styles here -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Main menu or header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">{% trans "Programming Academy" %}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="{% trans "Toggle navigation" %}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'academy_index' %}">{% trans "Home" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'available' %}">{% trans "My Courses" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blog_index' %}">{% trans "Blog" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'logout' %}">{% trans "Log out" %}</a>
+                    </li>
+                </ul>   
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <!-- Page content -->
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Add Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Add custom JS scripts here -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

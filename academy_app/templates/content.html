@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/content.css' %}">
+    </head>
+
+    <!-- Course Video -->
+    <div class="container-fluid p-0 mb-4">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item w-100" src="{{ course.video_url }}" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Add Comment Form -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h4 class="card-title text-primary">{% trans "Add Your Comment" %}</h4>
+            <form id="commentForm" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="hidden" name="parent_id" id="parent_id" value="">  <!-- Hidden field to pass parent_id -->
+                <button type="submit" class="btn btn-success mt-3">{% trans "Add Comment" %}</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Comments List -->
+    <div id="commentsSection">
+        {% for comment in comments %}
+            <div class="card my-3 shadow-sm" id="comment-{{ comment.id }}">
+                <div class="card-body">
+                    <strong>{{ comment.user.username }}</strong>
+                    <p>{{ comment.content }}</p>
+                    <small class="text-muted">{{ comment.created_at }}</small>
+                    
+                    <!-- Quote Button -->
+                    <button onclick="quoteComment({{ comment.id }})" class="btn btn-outline-info mt-2">{% trans "Quote" %}</button>
+
+                    {% if comment.parent %}
+                        <blockquote class="blockquote mt-3 border-left pl-3">
+                            <footer class="blockquote-footer">{% trans "Quoted from" %} <strong>{{ comment.parent.user.username }}</strong></footer>
+                            <p>{{ comment.parent.content }}</p>
+                        </blockquote>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p>{% trans "No comments yet." %}</p>
+        {% endfor %}
+    </div>
+
+    <!-- JavaScript to Submit Comments Without Reloading Page -->
+    <script src="{% static 'js/comments.js' %}"></script>
+{% endblock %}

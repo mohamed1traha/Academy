@@ -1,0 +1,16 @@
+<!-- templates/error.html -->
+{% extends 'checkout_base.html' %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Error" %}</title>
+</head>
+<body>
+    <h1>{% trans "Error" %}</h1>
+    <p>{{ message }}</p>
+    <a href="/">{% trans "Back to Home" %}</a>
+</body>
+</html>

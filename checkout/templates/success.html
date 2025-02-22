@@ -1,0 +1,9 @@
+<!-- success.html -->
+{% extends 'checkout_base.html' %}
+{% load i18n %}
+
+{% block content %}
+  <h1>{% trans "Payment Successful" %}</h1>
+  <p>{% trans "Your payment was successful. Thank you for your purchase!" %}</p>
+  <p>{% trans "Payment details:" %} {{ payment }}</p>
+{% endblock %}
