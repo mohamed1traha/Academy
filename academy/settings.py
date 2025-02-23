@@ -191,3 +191,6 @@ LOGGING = {
         },
     },
 }
+
+
+ALLOWED_HOSTS = ['*']

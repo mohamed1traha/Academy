@@ -17,6 +17,8 @@ class Post1(models.Model):
         return self.title
     
 
+
+
  
 
     
