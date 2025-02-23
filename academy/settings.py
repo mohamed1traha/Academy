@@ -194,3 +194,8 @@ LOGGING = {
 
 
 ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://a5aa-78-172-14-251.ngrok-free.app',
+    'http://a5aa-78-172-14-251.ngrok-free.app',  # إذا كنت تستخدم HTTP
+]
