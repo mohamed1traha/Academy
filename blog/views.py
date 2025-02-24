@@ -3,11 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from .forms import PostForm,UserForm
-from .models import Post1
+from .models import Post
 
 @login_required
 def blog_index(request):
-    posts = Post1.objects.all()  # لا حاجة لـ id__isnull=False
+    posts = Post.objects.all()  # لا حاجة لـ id__isnull=False
     return render(request, 'blok_index.html', {'posts': posts})
 
 
@@ -28,7 +28,7 @@ def create_post(request):
 
 @login_required
 def like_post(request, post_id):
-    post = get_object_or_404(Post1, id=post_id)
+    post = get_object_or_404(Post, id=post_id)
     
     if request.user in post.like.all():
         post.like.remove(request.user)  # إزالة الإعجاب
@@ -47,7 +47,7 @@ def like_post(request, post_id):
 @login_required
 def profile(request):
     user = request.user
-    post = Post1.objects.filter(user=user)
+    post = Post.objects.filter(user=user)
     return render(request,'profile.html',{
         'post':post,
     })
@@ -55,7 +55,7 @@ def profile(request):
 
 @login_required
 def edit_post(request, post_id):
-    post = get_object_or_404(Post1, id=post_id, user=request.user)  
+    post = get_object_or_404(Post, id=post_id, user=request.user)  
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():

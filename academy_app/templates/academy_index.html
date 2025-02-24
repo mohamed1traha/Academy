@@ -4,23 +4,29 @@
 {% block title %}{% trans "Courses" %}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        {% for course in courses %}
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}">
-                    <div class="card-body">
-                        {% if LANGUAGE_CODE == 'ar' %}
-                            <h5 class="card-title">{{ course.title }}</h5>
-                        {% else %}
-                            <h5 class="card-title">{{ course.title_en }}</h5>
-                        {% endif %}
-                        <p class="card-text"><strong>{% trans "Price" %}:</strong> {{ course.price }}</p>
-                        <p class="card-text"><small class="text-muted">{% trans "Date added" %}: {{ course.created_at }}</small></p>
-                        <a href="{% url 'course_page' course.id %}">{% trans "Details" %}</a>
+    <div class="container mt-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for course in courses %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="{{ course.image.url }}" class="card-img-top rounded-top" alt="{{ course.title }}" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {% if LANGUAGE_CODE == 'ar' %}
+                                    {{ course.title }}
+                                {% else %}
+                                    {{ course.title_en }}
+                                {% endif %}
+                            </h5>
+                            <p class="card-text text-muted"><strong>{% trans "Price" %}:</strong> {{ course.price }}</p>
+                            <p class="card-text"><small class="text-muted">{% trans "Date added" %}: {{ course.created_at }}</small></p>
+                        </div>
+                        <div class="card-footer bg-white border-0 text-center">
+                            <a href="{% url 'course_page' course.id %}" class="btn btn-primary w-100">{% trans "Details" %}</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

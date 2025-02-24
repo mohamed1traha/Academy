@@ -5,7 +5,7 @@ from django.db import models
 
 
 
-class Post1(models.Model):
+class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     like = models.ManyToManyField(User, related_name="liked_posts", blank=True)
     title = models.CharField(max_length=255, null=True, blank=True)

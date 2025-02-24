@@ -1,54 +1,99 @@
 {% load i18n %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% trans "Programming Learning Academy" %}{% endblock %}</title>
     
-    <!-- Adding Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Add any custom CSS styles here -->
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- أي إضافات CSS مخصصة -->
     {% block extra_css %}{% endblock %}
+    
+    <style>
+        /* تنسيق عصري لشريط التنقل */
+        .navbar {
+            background: linear-gradient(45deg, #007bff, #6610f2);
+        }
+        .navbar .nav-link {
+            color: white !important;
+            transition: 0.3s;
+        }
+        .navbar .nav-link:hover {
+            color: #ffd700 !important;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: white !important;
+        }
+        .logout-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .logout-btn:hover {
+            color: #ffd700;
+        }
+        .language-btn {
+            border: none;
+            background: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .language-btn:hover {
+            color: #ffd700;
+        }
+    </style>
 </head>
 <body>
-    <!-- Main menu or header -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">{% trans "Programming Academy" %}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="{% trans 'Toggle navigation' %}">
+            <a class="navbar-brand" href="{% url 'academy_index' %}">
+                <i class="fa-solid fa-graduation-cap"></i> {% trans "Programming Academy" %}
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'academy_index' %}">{% trans "Home" %}</a>
+                        <a class="nav-link" href="{% url 'academy_index' %}"><i class="fa-solid fa-house"></i> {% trans "Home" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'available' %}">{% trans "My Courses" %}</a>
+                        <a class="nav-link" href="{% url 'available' %}"><i class="fa-solid fa-book"></i> {% trans "My Courses" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog_index' %}">{% trans "Blog" %}</a>
+                        <a class="nav-link" href="{% url 'blog_index' %}"><i class="fa-solid fa-blog"></i> {% trans "Blog" %}</a>
                     </li>
                     <li class="nav-item">
-                        <form action="{% url 'logout' %}" method="post">
+                        <form action="{% url 'logout' %}" method="post" class="d-inline">
                             {% csrf_token %}
-                            <button type="submit">{% trans "Logout" %}</button>
-                        </form>                        
+                            <button type="submit" class="logout-btn"><i class="fa-solid fa-sign-out-alt"></i> {% trans "Logout" %}</button>
+                        </form>
                     </li>
-                    <li>
-                        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                            {% get_current_language as LANGUAGE_CODE %}                                         
+                    <li class="nav-item">
+                        <form action="{% url 'set_language' %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            {% get_current_language as LANGUAGE_CODE %}
                             <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
                             {% if LANGUAGE_CODE == 'ar' %}
-                                <button type='submit' name='language' value='en' class="icon solid fa-language">
-                                    <span class="label"></span>English
+                                <button type='submit' name='language' value='en' class="language-btn">
+                                    <i class="fa-solid fa-globe"></i> English
                                 </button>
                             {% else %}
-                                <button type='submit' name='language' value='ar' class="icon solid fa-language">
-                                    <span class="label"></span>عربي
+                                <button type='submit' name='language' value='ar' class="language-btn">
+                                    <i class="fa-solid fa-globe"></i> عربي
                                 </button>
                             {% endif %}
                         </form>
@@ -59,14 +104,14 @@
     </nav>
     
     <div class="container mt-4">
-        <!-- Page content -->
+        <!-- المحتوى الرئيسي -->
         {% block content %}{% endblock %}
     </div>
 
-    <!-- Adding Bootstrap JavaScript -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Add any custom JS scripts here -->
+    <!-- أي إضافات JS مخصصة -->
     {% block extra_js %}{% endblock %}
 </body>
 </html>
