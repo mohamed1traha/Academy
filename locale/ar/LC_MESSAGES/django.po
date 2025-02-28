@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-22 10:31+0300\n"
+"POT-Creation-Date: 2025-02-28 17:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,22 +23,22 @@ msgstr ""
 msgid "Courses"
 msgstr "الدورات"
 
-#: .\academy_app\templates\academy_index.html:14
+#: .\academy_app\templates\academy_index.html:21
 msgid "Price"
 msgstr "السعر"
 
-#: .\academy_app\templates\academy_index.html:15
-#: .\academy_app\templates\available.html:21
+#: .\academy_app\templates\academy_index.html:22
+#: .\academy_app\templates\available.html:25
 msgid "Date added"
 msgstr "تاريخ الإضافة"
 
-#: .\academy_app\templates\academy_index.html:16
+#: .\academy_app\templates\academy_index.html:25
 msgid "Details"
 msgstr "التفاصيل"
 
-#: .\academy_app\templates\available.html:5
+#: .\academy_app\templates\available.html:4
 #: .\academy_app\templates\available.html:8
-#: .\academy_app\templates\base.html:30
+#: .\academy_app\templates\base.html:75
 #: .\checkout\templates\checkout_base.html:30
 msgid "My Courses"
 msgstr "دوراتي"
@@ -47,34 +47,51 @@ msgstr "دوراتي"
 msgid "No image available"
 msgstr "لا توجد صورة متاحة"
 
-#: .\academy_app\templates\base.html:8
+#: .\academy_app\templates\base.html:8 .\blog\templates\blog_base.html:8
+#: .\user\templates\user_base.html:8
 msgid "Programming Learning Academy"
-msgstr "أكاديمية تعلم البرمجة"
+msgstr "اكاديمية البرمجة"
 
-#: .\academy_app\templates\base.html:20 .\blog\templates\blog_base.html:7
-#: .\blog\templates\blog_base.html:20 .\checkout\templates\checkout_base.html:8
+#: .\academy_app\templates\base.html:63 .\blog\templates\blog_base.html:25
+#: .\checkout\templates\checkout_base.html:8
 #: .\checkout\templates\checkout_base.html:20
+#: .\user\templates\user_base.html:63
 msgid "Programming Academy"
-msgstr "أكاديمية البرمجة"
+msgstr "اكاديمية البرمجة"
 
-#: .\academy_app\templates\base.html:21 .\blog\templates\blog_base.html:21
-#: .\checkout\templates\checkout_base.html:21
-msgid "Toggle navigation"
-msgstr "تبديل التنقل"
-
-#: .\academy_app\templates\base.html:27 .\blog\templates\blog_base.html:27
+#: .\academy_app\templates\base.html:71 .\blog\templates\blog_base.html:47
 #: .\checkout\templates\checkout_base.html:27
 msgid "Home"
 msgstr "الرئيسية"
 
-#: .\academy_app\templates\base.html:33
+#: .\academy_app\templates\base.html:80 .\blog\templates\blog_base.html:39
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+#: .\academy_app\templates\base.html:85
 #: .\checkout\templates\checkout_base.html:33
 msgid "Blog"
 msgstr "المدونة"
 
-#: .\academy_app\templates\base.html:38 .\blog\templates\blog_base.html:38
-msgid "Logout"
-msgstr "تسجيل الخروج"
+#: .\academy_app\templates\base.html:94 .\blog\templates\blog_base.html:56
+#: .\user\templates\user_base.html:81
+msgid "Switch to English"
+msgstr "التحول الى اللغة الالنجليزية"
+
+#: .\academy_app\templates\base.html:98 .\blog\templates\blog_base.html:60
+msgid "Switch to Arabic"
+msgstr "التحول الى اللغة العربية"
+
+#: .\academy_app\templates\base.html:108 .\blog\templates\blog_base.html:70
+#: .\user\templates\registration\login.html:11
+#: .\user\templates\registration\login.html:20
+#: .\user\templates\registration\login.html:65
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#: .\academy_app\templates\base.html:111 .\blog\templates\blog_base.html:73
+msgid "You are in the guest account"
+msgstr "أنت في حساب الضيف"
 
 #: .\academy_app\templates\content.html:19
 msgid "Add Your Comment"
@@ -100,57 +117,64 @@ msgstr "لا توجد تعليقات بعد."
 msgid "No video for this course."
 msgstr "لا يوجد فيديو لهذا الدورة."
 
-#: .\academy_app\templates\course_page.html:24
+#: .\academy_app\templates\course_page.html:25
+#: .\academy_app\templates\course_page.html:28
 msgid "Course Description:"
 msgstr "وصف الدورة:"
 
-#: .\academy_app\templates\course_page.html:25
+#: .\academy_app\templates\course_page.html:30
 msgid "Price:"
 msgstr "السعر:"
 
-#: .\academy_app\templates\course_page.html:25
+#: .\academy_app\templates\course_page.html:30
 msgid "SAR"
 msgstr "ريال سعودي"
 
-#: .\academy_app\templates\course_page.html:32
+#: .\academy_app\templates\course_page.html:36
+#, fuzzy
+#| msgid "Log out"
+msgid "Log in to buy"
+msgstr "تسجيل الدخول للشراء"
+
+#: .\academy_app\templates\course_page.html:42
 msgid "Pay with Stripe"
 msgstr "الدفع باستخدام Stripe"
 
-#: .\blog\templates\blog_base.html:30
+#: .\blog\templates\blog_base.html:34
 msgid "Profile"
 msgstr "الملف الشخصي"
 
-#: .\blog\templates\blog_base.html:33
+#: .\blog\templates\blog_base.html:44
 msgid "Academy"
 msgstr "أكاديمية"
 
 #: .\blog\templates\blok_index.html:7
+msgid "Log in to add a post"
+msgstr "قم بتسجيل الدخول لإضافة مشاركة"
+
+#: .\blog\templates\blok_index.html:9
 msgid "Add New Post"
 msgstr "إضافة منشور جديد"
 
-#: .\blog\templates\blok_index.html:9
+#: .\blog\templates\blok_index.html:11
 msgid "Blog Posts"
 msgstr "منشورات المدونة"
 
-#: .\blog\templates\blok_index.html:33
+#: .\blog\templates\blok_index.html:35
 msgid "Remove Like"
 msgstr "إزالة الإعجاب"
 
-#: .\blog\templates\blok_index.html:35
+#: .\blog\templates\blok_index.html:37
 msgid "Like"
 msgstr "إعجاب"
 
-#: .\blog\templates\blok_index.html:41 .\blog\templates\blok_index.html:69
+#: .\blog\templates\blok_index.html:43
 msgid "Like Count"
 msgstr "عدد الإعجابات"
 
-#: .\blog\templates\blok_index.html:44
+#: .\blog\templates\blok_index.html:46
 msgid "No posts available to display."
 msgstr "لا توجد منشورات لعرضها."
-
-#: .\blog\templates\blok_index.html:72
-msgid "An error occurred while processing the request."
-msgstr "حدث خطأ أثناء معالجة الطلب."
 
 #: .\blog\templates\create_post.html:10 .\blog\templates\create_post.html:19
 msgid "Create New Post"
@@ -176,28 +200,28 @@ msgstr "إرسال"
 msgid "Back"
 msgstr "عودة"
 
-#: .\blog\templates\edit_post.html:71 .\blog\templates\edit_profile.html:79
-#: .\blog\templates\profile.html:121
+#: .\blog\templates\edit_post.html:9 .\blog\templates\edit_profile.html:8
+#: .\blog\templates\profile.html:30
 msgid "Edit Post"
 msgstr "تحرير المنشور"
 
-#: .\blog\templates\edit_post.html:75 .\blog\templates\edit_profile.html:83
+#: .\blog\templates\edit_post.html:13 .\blog\templates\edit_profile.html:12
 msgid "Save Changes"
 msgstr "حفظ التغييرات"
 
-#: .\blog\templates\edit_post.html:77 .\blog\templates\edit_profile.html:85
+#: .\blog\templates\edit_post.html:15 .\blog\templates\edit_profile.html:14
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: .\blog\templates\profile.html:103
+#: .\blog\templates\profile.html:12
 msgid "Edit Profile"
 msgstr "تحرير الملف الشخصي"
 
-#: .\blog\templates\profile.html:106
+#: .\blog\templates\profile.html:15
 msgid "Posts"
 msgstr "المنشورات"
 
-#: .\blog\templates\profile.html:126
+#: .\blog\templates\profile.html:35
 msgid "No posts to display."
 msgstr "لا توجد منشورات لعرضها."
 
@@ -208,6 +232,10 @@ msgstr "تم إلغاء الدفع"
 #: .\checkout\templates\cancel.html:8
 msgid "Your payment has been canceled."
 msgstr "تم إلغاء الدفع الخاص بك."
+
+#: .\checkout\templates\checkout_base.html:21
+msgid "Toggle navigation"
+msgstr "تبديل التنقل"
 
 #: .\checkout\templates\checkout_base.html:36
 msgid "Log out"
@@ -233,6 +261,60 @@ msgstr "تم الدفع بنجاح. شكرًا لشرائك!"
 msgid "Payment details:"
 msgstr "تفاصيل الدفع:"
 
+#: .\user\templates\registration\login.html:37
+msgid "Username"
+msgstr "اسم المستخدم"
+
+#: .\user\templates\registration\login.html:51
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: .\user\templates\registration\login.html:70
+msgid "Don't have an account?"
+msgstr "ليس لديك حساب؟"
+
+#: .\user\templates\registration\login.html:70
+#, fuzzy
+#| msgid "Create New Post"
+msgid "Create a new account"
+msgstr "إنشاء منشور جديد"
+
+#: .\user\templates\registration\register.html:10
+#: .\user\templates\registration\register.html:19
+#: .\user\templates\registration\register.html:86
+msgid "إنشاء حساب"
+msgstr "Create an account"
+
+#: .\user\templates\registration\register.html:36
+msgid "اسم المستخدم"
+msgstr "user name"
+
+#: .\user\templates\registration\register.html:48
+msgid "البريد الإلكتروني"
+msgstr "e-mail"
+
+#: .\user\templates\registration\register.html:61
+msgid "كلمة المرور"
+msgstr "password"
+
+#: .\user\templates\registration\register.html:73
+msgid "تأكيد كلمة المرور"
+msgstr "Confirm password"
+
+#: .\user\templates\registration\register.html:91
+msgid "لديك حساب بالفعل؟"
+msgstr "Do you already have an account?"
+
+#: .\user\templates\registration\register.html:91
+msgid "تسجيل الدخول"
+msgstr "Login"
+
+#: .\user\templates\user_base.html:77
+#, fuzzy
+#| msgid "Switch to Arabic"
+msgid "Switch to  Arabic"
+msgstr "التحول الى اللغة العربية"
+
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16
 msgid "Messages"
 msgstr "الرسائل"
@@ -257,42 +339,42 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\core\paginator.py:32
 msgid "That page number is not an integer"
-msgstr ""
+msgstr "هذا هو الرقم الذي أتحدث عنه."
 
 #: .\venv\Lib\site-packages\django\core\paginator.py:33
 msgid "That page number is less than 1"
-msgstr ""
+msgstr "رقم هذه الصفحة أقل من 1"
 
 #: .\venv\Lib\site-packages\django\core\paginator.py:34
 msgid "That page contains no results"
-msgstr ""
+msgstr "هذه الصفحة لا تحتوي على نتائج"
 
 #: .\venv\Lib\site-packages\django\core\validators.py:22
 msgid "Enter a valid value."
-msgstr ""
+msgstr "أدخل قيمة صالحة."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:70
 msgid "Enter a valid domain name."
-msgstr ""
+msgstr "أدخل اسم نطاق صالحًا."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:155
 #: .\venv\Lib\site-packages\django\forms\fields.py:768
 msgid "Enter a valid URL."
-msgstr ""
+msgstr "أدخل عنوان URL صالحًا."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:216
 msgid "Enter a valid integer."
-msgstr ""
+msgstr "أدخل عددًا صحيحًا صالحًا."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:227
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "أدخل عنوان بريد إلكتروني صالح."
 
 #. Translators: "letters" means latin letters: a-z and A-Z.
 #: .\venv\Lib\site-packages\django\core\validators.py:310
 msgid ""
 "Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "أدخل slug صالحًا يتكون من أحرف أو أرقام أو شرطات سفلية أو علامات وصل."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:318
 msgid ""
@@ -1460,6 +1542,9 @@ msgstr ""
 #: .\venv\Lib\site-packages\modeltranslation\widgets.py:32
 msgid "None"
 msgstr ""
+
+#~ msgid "An error occurred while processing the request."
+#~ msgstr "حدث خطأ أثناء معالجة الطلب."
 
 #~ msgid "English"
 #~ msgstr "الإنجليزية"

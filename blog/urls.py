@@ -2,6 +2,7 @@ from django.contrib.auth import views as auth_views
 from academy_app.views import academy_index
 from django.urls import path
 from . import views 
+from user.views import register
 
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path('create_post/', views.create_post, name='create_post'),
     path('academy_index/',academy_index,name='academy_index'),
     path('profile/', views.profile, name='profile'),
+    path('register/', register, name='register'),
 ]

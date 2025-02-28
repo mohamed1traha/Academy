@@ -142,8 +142,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-LOGIN_REDIRECT_URL = '/academy_app/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/user/'
 
 
 
@@ -202,3 +202,5 @@ CSRF_TRUSTED_ORIGINS = [
 ALLOWED_HOSTS = ['.ngrok-free.app', 'localhost', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['https://*.ngrok-free.app']
+
+

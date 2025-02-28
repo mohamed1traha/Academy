@@ -3,29 +3,31 @@
 {% load i18n %}
 
 {% block content %}
-    <!-- Add New Post Button -->
-    <a href="{% url 'create_post' %}" class="add-post-btn">{% trans "Add New Post" %}</a>
-
+    {% if request.user.is_authenticated == False %}
+        <a href="{% url 'register' %}" class="add-post-btn">{% trans "Log in to add a post" %}</a>
+    {% else %}
+        <a href="{% url 'create_post' %}" class="add-post-btn">{% trans "Add New Post" %}</a>
+    {% endif %}
     <h1>{% trans "Blog Posts" %}</h1>
 
     <div class="posts-container">
         {% for post in posts %}
             <div class="post">
-                <!-- Display username -->
+
                 <h2 class="post-user">{{ post.user.username }}</h2>
                 
-                <!-- Display post title -->
+
                 <h3 class="post-title">{{ post.title }}</h3>
                 
-                <!-- Display image if available -->
+
                 {% if post.img %}
                     <img src="{{ post.img.url }}" alt="{{ post.title }}" class="post-image" />
                 {% endif %}
                 
-                <!-- Display post content truncated to a certain number of words -->
+
                 <p class="post-content">{{ post.content|truncatewords:30 }}</p>
 
-                <!-- Like button form -->
+
                 <form action="{% url 'like_post' post.id %}" method="POST" class="like-form" data-post-id="{{ post.id }}">
                     {% csrf_token %}
                     <button type="button" class="like-btn">
@@ -37,7 +39,7 @@
                     </button>
                 </form>
 
-                <!-- Display like count -->
+
                 <p class="like-count">{% trans "Like Count" %}: {{ post.like.count }}</p>
             </div>
         {% empty %}
@@ -45,7 +47,6 @@
         {% endfor %}
     </div>
 
-    <!-- Include jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/blog/index.js' %}"></script>
 

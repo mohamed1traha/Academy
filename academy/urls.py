@@ -29,8 +29,8 @@ urlpatterns=[
 
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
-    path('', include('user.urls')),
-    path('academy_app/', include('academy_app.urls')),
+    path('user/', include('user.urls')),
+    path('', include('academy_app.urls')),
     path('blog/', include('blog.urls')),
     path('checkout/', include('checkout.urls')),
     path('set_language/', include('django.conf.urls.i18n')),   

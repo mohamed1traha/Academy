@@ -30,13 +30,19 @@
                     <p class="card-text text-success"><strong>{% trans "Price:" %}</strong> {{ course.price }} {% trans "SAR" %}</p>
                 </div>
             </div>
-
-            <!-- Additional course details or actions (like a buy button) -->
-            <div class="d-flex justify-content-between">
-                <a href="{% url 'checkout' course.id %}" class="btn btn-success btn-lg shadow-sm">
-                    {% trans "Pay with Stripe" %}
-                </a>  
-            </div>
+            {% if request.user.is_authenticated == False %}
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'register' %}" class="btn btn-success btn-lg shadow-sm">
+                        {% trans "Log in to buy" %}
+                    </a>  
+                </div>
+            {% else %}
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'checkout' course.id %}" class="btn btn-success btn-lg shadow-sm">
+                        {% trans "Pay with Stripe" %}
+                    </a>  
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>

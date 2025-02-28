@@ -4,23 +4,23 @@ from django.shortcuts import get_object_or_404,render
 from django.http import JsonResponse
 from .forms import CommentForm
 
-@login_required
 def academy_index(request):
-    user = request.user
-    user_courses = UserCourse.objects.filter(user=user).values_list('course', flat=True)
-    # جلب جميع الكورسات ما عدا التي اشترك بها المستخدم
-    courses = Course.objects.exclude(id__in=user_courses)
+
+    if request.user.is_authenticated:
+        user = request.user
+        user_courses = UserCourse.objects.filter(user=user).values_list('course', flat=True)
+        courses = Course.objects.exclude(id__in=user_courses)
+    courses = Course.objects.all()
     for course in courses:
         video_id = course.video_url.split('youtu.be/')[1] if 'youtu.be/' in course.video_url else None
         course.video_id = video_id 
     
     return render(request,'academy_index.html',{'courses':courses})
 
-@login_required
+
 def course_page(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     
-    # تعديل الرابط ليكون بتنسيق embed
     if course.video_url:
         video_url = course.video_url.replace("https://youtu.be/", "https://www.youtube.com/embed/")
         course.video_url = video_url  # تخزين الرابط المعدل

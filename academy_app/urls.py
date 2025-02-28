@@ -1,4 +1,5 @@
 from django.contrib.auth import views as auth_views 
+from user.views import register
 from django.urls import include, path
 from blog import views as view
 from . import views 
@@ -15,6 +16,8 @@ urlpatterns=[
     path('available/',views.available,name='available'),
     path('',views.academy_index,name='academy_index'),
     path('blog/', view.blog_index,name='blog_index'),
+    path('register/', register,name='register'),
+    path('register/', register,name='register'),
 ]
 
 

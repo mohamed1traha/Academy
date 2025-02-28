@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from .forms import PostForm,UserForm
 from .models import Post
 
-@login_required
+
 def blog_index(request):
     posts = Post.objects.all()  # لا حاجة لـ id__isnull=False
     return render(request, 'blok_index.html', {'posts': posts})

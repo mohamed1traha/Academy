@@ -1,12 +1,14 @@
+{% extends 'user_base.html' %}
 {% load static %}
-{% load widget_tweaks %}  {# تحميل widget_tweaks لتنسيق الحقول #}
+{% load widget_tweaks %}
+{% load i18n %}
 
-<!DOCTYPE html>
-<html lang="ar">
+{% block content %}
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول</title>
+    <title>{% trans "Login" %}</title>
     <link rel="stylesheet" href="{% static 'css/user/login.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
@@ -15,7 +17,7 @@
         <div class="col-md-6">
             <div class="card shadow-lg">
                 <div class="card-header bg-primary text-white text-center">
-                    <h2>تسجيل الدخول</h2>
+                    <h2>{% trans "Login" %}</h2>
                 </div>
                 <div class="card-body">
                     
@@ -32,8 +34,8 @@
                         {% csrf_token %}
 
                         <div class="mb-3">
-                            <label class="form-label">اسم المستخدم</label>
-                            {{ form.username|add_class:"form-control"|attr:"placeholder:أدخل اسم المستخدم" }}
+                            <label class="form-label">{% trans "Username" %}</label>
+                            {{ form.username|add_class:"form-control" }}
                             
                             {# ✅ عرض الأخطاء الخاصة بحقل اسم المستخدم #}
                             {% if form.username.errors %}
@@ -46,8 +48,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">كلمة المرور</label>
-                            {{ form.password|add_class:"form-control"|attr:"placeholder:أدخل كلمة المرور" }}
+                            <label class="form-label">{% trans "Password" %}</label>
+                            {{ form.password|add_class:"form-control"   }}
                             
                             {# ✅ عرض الأخطاء الخاصة بحقل كلمة المرور #}
                             {% if form.password.errors %}
@@ -60,12 +62,12 @@
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-success">تسجيل الدخول</button>
+                            <button type="submit" class="btn btn-success">{% trans "Login" %}</button>
                         </div>
                     </form>
                 </div>
                 <div class="card-footer text-center">
-                    <small>ليس لديك حساب؟ <a href="{% url 'register' %}" class="text-primary">إنشاء حساب جديد</a></small>
+                    <small>{% trans "Don't have an account?" %} <a href="{% url 'register' %}" class="text-primary">{% trans "Create a new account" %}</a></small>
                 </div>
             </div>
         </div>
@@ -73,4 +75,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+{% endblock content %}
