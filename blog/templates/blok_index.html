@@ -3,53 +3,76 @@
 {% load i18n %}
 
 {% block content %}
-    {% if request.user.is_authenticated == False %}
-        <a href="{% url 'register' %}" class="add-post-btn">{% trans "Log in to add a post" %}</a>
-    {% else %}
-        <a href="{% url 'create_post' %}" class="add-post-btn">{% trans "Add New Post" %}</a>
-    {% endif %}
-    <h1>{% trans "Blog Posts" %}</h1>
+    <div class="container mt-5 pt-5">
+        <div class="text-center">
+            <a href="{% url 'create_post' %}" class="btn btn-primary mb-4">{% trans "Add New Post" %}</a>
+            <h1>{% trans "Blog Posts" %}</h1>
+        </div>
 
-    <div class="posts-container">
-        {% for post in posts %}
-            <div class="post">
-
-                <h2 class="post-user">{{ post.user.username }}</h2>
-                
-
-                <h3 class="post-title">{{ post.title }}</h3>
-                
-
-                {% if post.img %}
-                    <img src="{{ post.img.url }}" alt="{{ post.title }}" class="post-image" />
-                {% endif %}
-                
-
-                <p class="post-content">{{ post.content|truncatewords:30 }}</p>
-
-
-                <form action="{% url 'like_post' post.id %}" method="POST" class="like-form" data-post-id="{{ post.id }}">
-                    {% csrf_token %}
-                    <button type="button" class="like-btn">
-                        {% if request.user in post.like.all %}
-                            {% trans "Remove Like" %}
-                        {% else %}
-                            {% trans "Like" %}
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-4 mb-4">
+                    <div class="card post-card">
+                        {% if post.img %}
+                            <a href="{% url 'post_page' post.id %}">
+                                <img src="{{ post.img.url }}" alt="{{ post.title }}" class="card-img-top post-image" />
+                            </a>
                         {% endif %}
-                    </button>
-                </form>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ post.user.username }}</h6>
+                            <p class="card-text">{{ post.content|truncatewords:20 }}</p>
 
+                            <form action="{% url 'like_post' post.id %}" method="POST" class="like-form" data-post-id="{{ post.id }}">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-outline-primary like-btn">
+                                    {% if request.user in post.like.all %}
+                                        {% trans "Remove Like" %}
+                                    {% else %}
+                                        {% trans "Like" %}
+                                    {% endif %}
+                                </button>
+                            </form>
 
-                <p class="like-count">{% trans "Like Count" %}: {{ post.like.count }}</p>
-            </div>
-        {% empty %}
-            <p>{% trans "No posts available to display." %}</p>
-        {% endfor %}
+                            <p class="like-count mt-2">{% trans "Like Count" %}: {{ post.like.count }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center">{% trans "No posts available to display." %}</p>
+            {% endfor %}
+        </div>
     </div>
 
+    <!-- Modal لعرض الصورة عند النقر عليها -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="" alt="Post Image" id="modalImage" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal لعرض الصورة عند النقر عليها -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">عرض الصورة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="" alt="Post Image" id="modalImage" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/blog/index.js' %}"></script>
-
 
     <link rel="stylesheet" href="{% static 'css/blog/index.css' %}">
 

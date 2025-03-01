@@ -1,0 +1,35 @@
+.navbar {
+    background: linear-gradient(45deg, #007bff, #6610f2);
+}
+.navbar .nav-link {
+    color: rgb(0, 0, 0) !important;
+    transition: 0.3s;
+}
+.navbar .nav-link:hover {
+    color: #ffd700 !important;
+}
+.navbar-brand {
+    font-weight: bold;
+    color: rgb(0, 0, 0) !important;
+}
+.logout-btn {
+    background: none;
+    border: none;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.logout-btn:hover {
+    color: #ffd700;
+}
+.language-btn {
+    border: none;
+    background: none;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.language-btn:hover {
+    color: #ffd700;
+}

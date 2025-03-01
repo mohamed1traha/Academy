@@ -9,15 +9,131 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
     <link rel="stylesheet" href="{% static 'css/blog/blog_style.css' %}">
 
-    {% block extra_css %}{% endblock %}
+    {% block extra_css %}
+    <style>
+       
+        .nav-link img {
+            border-radius: 50%;
+            width: 30px;  
+            height: 30px; 
+            object-fit: cover; 
+        }
+
+       
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+        }
+
+       
+        .navbar {
+            background-color: #007bff;
+        }
+
+        .navbar-brand {
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #f8f9fa;
+        }
+
+        .navbar-nav .nav-item {
+            padding-right: 15px;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        
+        .language-btn,
+        .logout-btn {
+            border-radius: 50px;
+            padding: 8px 15px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .language-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .language-btn:hover {
+            background-color: #218838;
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        .container {
+            margin-top: 40px;
+        }
+
+        .container .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container .card-header {
+            background-color: #007bff;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .container .card-body {
+            padding: 20px;
+        }
+
+       
+        .navbar-nav.ms-auto {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            padding: 10px 20px;
+        }
+
+       
+        .logged-in-user {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 50px;
+        }
+    </style>
+    {% endblock %}
 </head>
 <body>
 
-    <!-- شريط التنقل -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'academy_index' %}">
                 <i class="fa-solid fa-graduation-cap"></i> {% trans "Programming Academy" %}
@@ -27,9 +143,19 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    {% if request.user.is_authenticated %}
+                    <!-- Logged-in User Items -->
+                    <!-- Public Items -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blok_index' %}"><i class="fa-solid fa-house"></i> {% trans "Home" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'academy_index' %}">{% trans "Academy" %}</a>
+                    </li>
+                    {% if request.user.is_authenticated == True %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">{% trans "Profile" %}</a>
+                            <a class="nav-link" href="{% url 'profile' %}">
+                                <img src="{{ request.user.profile.profile_picture.url }}" alt="{{ request.user.username }}'s profile picture" class="rounded-circle" width="30" height="30">
+                            </a>
                         </li>
                         <li class="nav-item">
                             <form action="{% url 'logout' %}" method="post" class="d-inline">
@@ -38,12 +164,6 @@
                             </form>
                         </li>
                     {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'academy_index' %}">{% trans "Academy" %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blok_index' %}"><i class="fa-solid fa-house"></i> {% trans "Home" %}</a>
-                    </li>
                     <li class="nav-item">
                         <form action="{% url 'set_language' %}" method="post" class="d-inline">
                             {% csrf_token %}
@@ -60,29 +180,33 @@
                             {% endif %}
                         </form>
                     </li>
+                    <!-- Login/Guest Account Info -->
                     <li>
-                        {% if request.user.is_authenticated == True %}
-                        {{ request.user.username }}
-                        {% else %}
+                        {% if request.user.is_authenticated == False %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'register' %}"><i class="fa-solid fa-blog"></i> {% trans "Login" %}</a>
                             </li>
                             <li class="nav-item">
-                                {% trans "You are in the guest account" %}
+                                <span class="text-white">{% trans "You are in the guest account" %}</span>
                             </li>
                         {% endif %}
                     </li>
-                </ul>   
+                </ul>
             </div>
         </div>
     </nav>
-    
-    <!-- المحتوى الرئيسي -->
-    <div class="container mt-4">
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-5">
         {% block content %}{% endblock %}
     </div>
 
-    <!-- روابط جافا سكربت -->
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Programming Learning Academy</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     {% block extra_js %}{% endblock %}

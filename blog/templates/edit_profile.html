@@ -1,14 +1,19 @@
 {% extends 'blog_base.html' %}
 {% load i18n %}
 {% load static %}
-{% block content %}
 
+{% block content %}
 <link rel="stylesheet" href="{% static 'css/blog/edit_profile.css' %}">
 <div class="edit-container">
-    <h2>{% trans "Edit Post" %}</h2>
+    <h2>{% trans "Edit Profile" %}</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div>
+            {{ user_form.as_p }}
+        </div>
+        <div>
+            {{ profile_form.as_p }}
+        </div>
         <button type="submit">{% trans "Save Changes" %}</button>
     </form>
     <a href="{% url 'profile' %}" class="cancel-btn">{% trans "Cancel" %}</a>

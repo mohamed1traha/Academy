@@ -15,4 +15,5 @@ urlpatterns = [
     path('academy_index/',academy_index,name='academy_index'),
     path('profile/', views.profile, name='profile'),
     path('register/', register, name='register'),
+    path('post_page/<int:post_id>', views.post_page, name='post_page'),
 ]

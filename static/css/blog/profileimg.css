@@ -1,0 +1,79 @@
+/* تنسيق الصورة الشخصية */
+.profile-link img {
+    width: 50px; /* تحديد الحجم */
+    height: 50px; /* تحديد الحجم */
+    border-radius: 50%; /* لجعل الصورة دائرية */
+    object-fit: cover; /* لضمان أن الصورة تملأ الدائرة بشكل جيد */
+    margin-left: 10px; /* لإضافة مسافة بين الصورة واسم المستخدم */
+}
+
+/* تنسيق المنشورات */
+.posts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* المسافة بين المنشورات */
+    justify-content: center; /* محاذاة المنشورات في منتصف الصفحة */
+    margin-top: 20px;
+}
+
+.post {
+    background-color: #fff; /* خلفية بيضاء */
+    border-radius: 10px; /* حواف مستديرة */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ظل ناعم */
+    width: 300px; /* عرض المنشور */
+    padding: 20px; /* مسافة داخلية */
+    transition: transform 0.3s ease-in-out; /* تأثير التحويل عند المرور على المنشور */
+}
+
+.post:hover {
+    transform: translateY(-5px); /* رفع المنشور قليلاً عند المرور عليه */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* تأثير الظل عند التحويم */
+}
+
+.post-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333; /* لون النص */
+}
+
+.post-content {
+    color: #555; /* لون النص */
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify; /* محاذاة النص */
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* حواف مستديرة للصورة */
+    margin-bottom: 15px;
+}
+
+/* زر تعديل المنشور */
+.edit-btn {
+    background-color: #4CAF50; /* اللون الأخضر */
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #45a049; /* تغيير اللون عند التحويم */
+}
+
+/* نص عند عدم وجود منشورات */
+.posts-container p {
+    color: #777;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    margin-top: 50px;
+}

@@ -1,0 +1,21 @@
+{% extends 'blog_base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="card shadow-lg">
+        {% if post.img %}
+            <img src="{{ post.img.url }}" alt="{{ post.title }}" class="card-img-top rounded-top">
+        {% endif %}
+        <div class="card-body text-center">
+            <h1 class="card-title font-weight-bold">{{ post.title }}</h1>
+            <h5 class="text-muted">بقلم: {{ post.user.username }}</h5>
+            <hr>
+            <p class="card-text lead">{{ post.content }}</p>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'blok_index' %}" class="btn btn-secondary">{% trans "Back to Posts" %}</a>
+    </div>
+</div>
+{% endblock %}

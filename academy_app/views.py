@@ -5,12 +5,12 @@ from django.http import JsonResponse
 from .forms import CommentForm
 
 def academy_index(request):
-
     if request.user.is_authenticated:
         user = request.user
         user_courses = UserCourse.objects.filter(user=user).values_list('course', flat=True)
         courses = Course.objects.exclude(id__in=user_courses)
-    courses = Course.objects.all()
+    else:
+        courses = Course.objects.all()
     for course in courses:
         video_id = course.video_url.split('youtu.be/')[1] if 'youtu.be/' in course.video_url else None
         course.video_id = video_id 

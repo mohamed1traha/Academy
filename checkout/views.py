@@ -27,8 +27,8 @@ def create_checkout_session(request, course_id):
             'quantity': 1,
         }],
         mode='payment',
-        success_url=request.build_absolute_uri('/academy_app/checkout/success/'),
-        cancel_url=request.build_absolute_uri('/academy_app/checkout/cancel/'),
+        success_url=request.build_absolute_uri('/checkout/success/'),
+        cancel_url=request.build_absolute_uri('/checkout/cancel/'),
     )
 
     return redirect(checkout_session.url, code=303)

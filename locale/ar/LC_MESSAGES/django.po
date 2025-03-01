@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-28 17:09+0300\n"
+"POT-Creation-Date: 2025-03-01 12:28+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgid "Price"
 msgstr "السعر"
 
 #: .\academy_app\templates\academy_index.html:22
-#: .\academy_app\templates\available.html:25
+#: .\academy_app\templates\available.html:26 .\blog\templates\profile.html:34
 msgid "Date added"
 msgstr "تاريخ الإضافة"
 
@@ -38,60 +38,67 @@ msgstr "التفاصيل"
 
 #: .\academy_app\templates\available.html:4
 #: .\academy_app\templates\available.html:8
-#: .\academy_app\templates\base.html:75
+#: .\academy_app\templates\base.html:157 .\blog\templates\profile.html:16
 #: .\checkout\templates\checkout_base.html:30
 msgid "My Courses"
 msgstr "دوراتي"
 
-#: .\academy_app\templates\available.html:17
+#: .\academy_app\templates\available.html:18 .\blog\templates\profile.html:26
 msgid "No image available"
 msgstr "لا توجد صورة متاحة"
 
-#: .\academy_app\templates\base.html:8 .\blog\templates\blog_base.html:8
+#: .\academy_app\templates\available.html:35 .\blog\templates\profile.html:43
+#, fuzzy
+#| msgid "No image available"
+msgid "No courses available"
+msgstr "لا توجد صورة متاحة"
+
+#: .\academy_app\templates\base.html:9 .\blog\templates\blog_base.html:8
 #: .\user\templates\user_base.html:8
 msgid "Programming Learning Academy"
 msgstr "اكاديمية البرمجة"
 
-#: .\academy_app\templates\base.html:63 .\blog\templates\blog_base.html:25
+#: .\academy_app\templates\base.html:144 .\blog\templates\blog_base.html:139
 #: .\checkout\templates\checkout_base.html:8
 #: .\checkout\templates\checkout_base.html:20
 #: .\user\templates\user_base.html:63
 msgid "Programming Academy"
 msgstr "اكاديمية البرمجة"
 
-#: .\academy_app\templates\base.html:71 .\blog\templates\blog_base.html:47
+#: .\academy_app\templates\base.html:152 .\blog\templates\blog_base.html:149
 #: .\checkout\templates\checkout_base.html:27
 msgid "Home"
 msgstr "الرئيسية"
 
-#: .\academy_app\templates\base.html:80 .\blog\templates\blog_base.html:39
-msgid "Logout"
-msgstr "تسجيل الخروج"
-
-#: .\academy_app\templates\base.html:85
+#: .\academy_app\templates\base.html:160
 #: .\checkout\templates\checkout_base.html:33
 msgid "Blog"
 msgstr "المدونة"
 
-#: .\academy_app\templates\base.html:94 .\blog\templates\blog_base.html:56
-#: .\user\templates\user_base.html:81
-msgid "Switch to English"
-msgstr "التحول الى اللغة الالنجليزية"
+#: .\academy_app\templates\base.html:170 .\blog\templates\blog_base.html:163
+msgid "Logout"
+msgstr "تسجيل الخروج"
 
-#: .\academy_app\templates\base.html:98 .\blog\templates\blog_base.html:60
-msgid "Switch to Arabic"
-msgstr "التحول الى اللغة العربية"
-
-#: .\academy_app\templates\base.html:108 .\blog\templates\blog_base.html:70
+#: .\academy_app\templates\base.html:175 .\blog\templates\blog_base.html:187
 #: .\user\templates\registration\login.html:11
 #: .\user\templates\registration\login.html:20
 #: .\user\templates\registration\login.html:65
 msgid "Login"
 msgstr "تسجيل الدخول"
 
-#: .\academy_app\templates\base.html:111 .\blog\templates\blog_base.html:73
+#: .\academy_app\templates\base.html:178 .\blog\templates\blog_base.html:190
 msgid "You are in the guest account"
 msgstr "أنت في حساب الضيف"
+
+#: .\academy_app\templates\base.html:190 .\blog\templates\blog_base.html:174
+#: .\user\templates\user_base.html:77
+msgid "Switch to English"
+msgstr "التحول الى اللغة الالنجليزية"
+
+#: .\academy_app\templates\base.html:194 .\blog\templates\blog_base.html:178
+#: .\user\templates\user_base.html:81
+msgid "Switch to Arabic"
+msgstr "التحول الى اللغة العربية"
 
 #: .\academy_app\templates\content.html:19
 msgid "Add Your Comment"
@@ -140,39 +147,31 @@ msgstr "تسجيل الدخول للشراء"
 msgid "Pay with Stripe"
 msgstr "الدفع باستخدام Stripe"
 
-#: .\blog\templates\blog_base.html:34
-msgid "Profile"
-msgstr "الملف الشخصي"
-
-#: .\blog\templates\blog_base.html:44
+#: .\blog\templates\blog_base.html:152
 msgid "Academy"
 msgstr "أكاديمية"
 
-#: .\blog\templates\blok_index.html:7
-msgid "Log in to add a post"
-msgstr "قم بتسجيل الدخول لإضافة مشاركة"
-
-#: .\blog\templates\blok_index.html:9
+#: .\blog\templates\blok_index.html:8
 msgid "Add New Post"
 msgstr "إضافة منشور جديد"
 
-#: .\blog\templates\blok_index.html:11
+#: .\blog\templates\blok_index.html:9
 msgid "Blog Posts"
 msgstr "منشورات المدونة"
 
-#: .\blog\templates\blok_index.html:35
+#: .\blog\templates\blok_index.html:30
 msgid "Remove Like"
 msgstr "إزالة الإعجاب"
 
-#: .\blog\templates\blok_index.html:37
+#: .\blog\templates\blok_index.html:32
 msgid "Like"
 msgstr "إعجاب"
 
-#: .\blog\templates\blok_index.html:43
+#: .\blog\templates\blok_index.html:37
 msgid "Like Count"
 msgstr "عدد الإعجابات"
 
-#: .\blog\templates\blok_index.html:46
+#: .\blog\templates\blok_index.html:42
 msgid "No posts available to display."
 msgstr "لا توجد منشورات لعرضها."
 
@@ -200,28 +199,33 @@ msgstr "إرسال"
 msgid "Back"
 msgstr "عودة"
 
-#: .\blog\templates\edit_post.html:9 .\blog\templates\edit_profile.html:8
-#: .\blog\templates\profile.html:30
+#: .\blog\templates\edit_post.html:9 .\blog\templates\profile.html:62
 msgid "Edit Post"
 msgstr "تحرير المنشور"
 
-#: .\blog\templates\edit_post.html:13 .\blog\templates\edit_profile.html:12
+#: .\blog\templates\edit_post.html:13 .\blog\templates\edit_profile.html:17
 msgid "Save Changes"
 msgstr "حفظ التغييرات"
 
-#: .\blog\templates\edit_post.html:15 .\blog\templates\edit_profile.html:14
+#: .\blog\templates\edit_post.html:15 .\blog\templates\edit_profile.html:19
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: .\blog\templates\profile.html:12
+#: .\blog\templates\edit_profile.html:8 .\blog\templates\profile.html:13
 msgid "Edit Profile"
 msgstr "تحرير الملف الشخصي"
 
-#: .\blog\templates\profile.html:15
+#: .\blog\templates\post_page.html:18
+#, fuzzy
+#| msgid "Back to Home"
+msgid "Back to Posts"
+msgstr "العودة إلى الرئيسية"
+
+#: .\blog\templates\profile.html:47
 msgid "Posts"
 msgstr "المنشورات"
 
-#: .\blog\templates\profile.html:35
+#: .\blog\templates\profile.html:67
 msgid "No posts to display."
 msgstr "لا توجد منشورات لعرضها."
 
@@ -279,41 +283,34 @@ msgstr "ليس لديك حساب؟"
 msgid "Create a new account"
 msgstr "إنشاء منشور جديد"
 
-#: .\user\templates\registration\register.html:10
-#: .\user\templates\registration\register.html:19
-#: .\user\templates\registration\register.html:86
+#: .\user\templates\registration\register.html:11
+#: .\user\templates\registration\register.html:78
 msgid "إنشاء حساب"
 msgstr "Create an account"
 
-#: .\user\templates\registration\register.html:36
+#: .\user\templates\registration\register.html:28
 msgid "اسم المستخدم"
 msgstr "user name"
 
-#: .\user\templates\registration\register.html:48
+#: .\user\templates\registration\register.html:40
 msgid "البريد الإلكتروني"
 msgstr "e-mail"
 
-#: .\user\templates\registration\register.html:61
+#: .\user\templates\registration\register.html:53
 msgid "كلمة المرور"
 msgstr "password"
 
-#: .\user\templates\registration\register.html:73
+#: .\user\templates\registration\register.html:65
 msgid "تأكيد كلمة المرور"
 msgstr "Confirm password"
 
-#: .\user\templates\registration\register.html:91
+#: .\user\templates\registration\register.html:83
 msgid "لديك حساب بالفعل؟"
 msgstr "Do you already have an account?"
 
-#: .\user\templates\registration\register.html:91
+#: .\user\templates\registration\register.html:83
 msgid "تسجيل الدخول"
 msgstr "Login"
-
-#: .\user\templates\user_base.html:77
-#, fuzzy
-#| msgid "Switch to Arabic"
-msgid "Switch to  Arabic"
-msgstr "التحول الى اللغة العربية"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16
 msgid "Messages"
@@ -1542,6 +1539,17 @@ msgstr ""
 #: .\venv\Lib\site-packages\modeltranslation\widgets.py:32
 msgid "None"
 msgstr ""
+
+#~ msgid "Profile"
+#~ msgstr "الملف الشخصي"
+
+#~ msgid "Log in to add a post"
+#~ msgstr "قم بتسجيل الدخول لإضافة مشاركة"
+
+#, fuzzy
+#~| msgid "Switch to Arabic"
+#~ msgid "Switch to  Arabic"
+#~ msgstr "التحول الى اللغة العربية"
 
 #~ msgid "An error occurred while processing the request."
 #~ msgstr "حدث خطأ أثناء معالجة الطلب."
