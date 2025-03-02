@@ -143,8 +143,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <!-- Logged-in User Items -->
-                    <!-- Public Items -->
+                    <li class="nav-item">
+                        {% if user.is_staff %}
+                            <a class="nav-link text-warning" href="{% url 'admin:index' %}">
+                                <i class="fa-solid fa-cogs"></i> {% trans "Admin Page" %}
+                            </a>
+                        {% endif %}
+                    </li>   
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'blok_index' %}"><i class="fa-solid fa-house"></i> {% trans "Home" %}</a>
                     </li>
@@ -152,11 +157,17 @@
                         <a class="nav-link" href="{% url 'academy_index' %}">{% trans "Academy" %}</a>
                     </li>
                     {% if request.user.is_authenticated == True %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">
-                                <img src="{{ request.user.profile.profile_picture.url }}" alt="{{ request.user.username }}'s profile picture" class="rounded-circle" width="30" height="30">
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        {% if request.user.profile.profile_picture %}
+                        <a class="nav-link" href="{% url 'profile' %}">
+                            <img src="{{ request.user.profile.profile_picture.url }}" alt="{{ request.user.username }}'s profile picture" class="rounded-circle" width="30" height="30">
+                        </a>
+                        {% else %}
+                        <a class="nav-link" href="{% url 'profile' %}">
+                            <img src="{% static 'images/default-profile.png' %}" alt="Default profile picture" class="rounded-circle" width="30" height="30">
+                        </a>
+                        {% endif %}
+                    </li>
                         <li class="nav-item">
                             <form action="{% url 'logout' %}" method="post" class="d-inline">
                                 {% csrf_token %}

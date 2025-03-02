@@ -4,8 +4,25 @@
 {% block title %}{% trans "Courses" %}{% endblock %}
 
 {% block content %}
+    <div class="col-md-4">
+        <h3>{% trans "Categories" %}</h3>
+        <ul class="list-group">
+            {% for category in categories %}
+                {% if LANGUAGE_CODE == 'ar' %}
+                    <li class="list-group-item">
+                        <a href="{% url 'category_page' category.id %}">{{ category.name }}</a>
+                    </li>
+                {% else %}
+                    <li class="list-group-item">
+                        <a href="{% url 'category_page' category.id %}">{{ category.name_en }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
     <div class="container mt-4">
         <div class="row row-cols-1 row-cols-md-3 g-4">
+
             {% for course in courses %}
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">

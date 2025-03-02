@@ -1,0 +1,61 @@
+    {% extends 'base.html' %}
+    {% load static %}
+
+    {% load i18n %}
+
+    {% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- الشريط الجانبي -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="position-sticky">
+                    <h2 class="sidebar-heading text-center mt-3">{% trans 'Tracks' %}</h2>
+                    <div class="accordion" id="tracksAccordion">
+                        {% for tracks in track %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-{{ tracks.id }}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                            data-bs-target="#collapse-{{ tracks.id }}" 
+                                            aria-expanded="false" 
+                                            aria-controls="collapse-{{ tracks.id }}">
+                                            {% if LANGUAGE_CODE == 'ar' %}
+                                                🎯 {{ tracks.title }}
+                                            {% else %}
+                                                🎯 {{ tracks.title_en }}
+                                            {% endif %}
+                                    </button>
+                                </h2>
+                                <div id="collapse-{{ tracks.id }}" class="accordion-collapse collapse" 
+                                    aria-labelledby="heading-{{ tracks.id }}" 
+                                    data-bs-parent="#tracksAccordion">
+                                    <div class="accordion-body">
+                                        <ul class="list-group">
+                                            {% for vido in tracks.videos.all %}
+                                                <li class="list-group-item">
+                                                    <a class="text-decoration-none" href="{% url 'content' course_id vido.id %}">
+                                                        
+                                                        {% if LANGUAGE_CODE == 'ar' %}
+                                                            🎥 {{ vido.title }}
+                                                        {% else %}
+                                                            🎥 {{ vido.title_en }}
+                                                        {% endif %}
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </nav>
+
+            <!-- المحتوى الرئيسي -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <p>{% trans 'Please select a track from the side menu to view its videos.' %}</p>
+            </main>
+        </div>
+    </div>
+    <link rel="stylesheet" href="{% static 'css/track.css' %}">
+    {% endblock %}

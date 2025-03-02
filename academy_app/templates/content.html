@@ -1,56 +1,110 @@
-{% extends 'base.html' %}
-{% load static %}
-{% load i18n %}
-{% block content %}
-    <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/content.css' %}">
-    </head>
+    {% extends 'base.html' %}
+    {% load static %}
+    {% load i18n %}
 
-    <!-- Course Video -->
-    <div class="container-fluid p-0 mb-4">
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item w-100" src="{{ course.video_url }}" allowfullscreen></iframe>
-        </div>
-    </div>
+    {% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- المحتوى الرئيسي -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-    <!-- Add Comment Form -->
-    <div class="card shadow-sm mb-4">
-        <div class="card-body">
-            <h4 class="card-title text-primary">{% trans "Add Your Comment" %}</h4>
-            <form id="commentForm" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="hidden" name="parent_id" id="parent_id" value="">  <!-- Hidden field to pass parent_id -->
-                <button type="submit" class="btn btn-success mt-3">{% trans "Add Comment" %}</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Comments List -->
-    <div id="commentsSection">
-        {% for comment in comments %}
-            <div class="card my-3 shadow-sm" id="comment-{{ comment.id }}">
-                <div class="card-body">
-                    <strong>{{ comment.user.username }}</strong>
-                    <p>{{ comment.content }}</p>
-                    <small class="text-muted">{{ comment.created_at }}</small>
-                    
-                    <!-- Quote Button -->
-                    <button onclick="quoteComment({{ comment.id }})" class="btn btn-outline-info mt-2">{% trans "Quote" %}</button>
-
-                    {% if comment.parent %}
-                        <blockquote class="blockquote mt-3 border-left pl-3">
-                            <footer class="blockquote-footer">{% trans "Quoted from" %} <strong>{{ comment.parent.user.username }}</strong></footer>
-                            <p>{{ comment.parent.content }}</p>
-                        </blockquote>
+                <div class="container-fluid p-0 mb-4">
+                    {% if course %}
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item w-100" src="{{ course.video_url }}" allowfullscreen></iframe>
+                        </div>
+                    {% else %}
+                        <p>{% trans "No video available for this track." %}</p>
                     {% endif %}
                 </div>
-            </div>
-        {% empty %}
-            <p>{% trans "No comments yet." %}</p>
-        {% endfor %}
+
+                <!-- Add Comment Form -->
+                <div class="card shadow-lg mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title text-primary">{% trans "Add Your Comment" %}</h4>
+                        <form id="commentForm" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input type="hidden" name="parent_id" id="parent_id" value="">
+                            <button type="submit" class="btn btn-success mt-3">{% trans "Add Comment" %}</button>
+                        </form>
+                    </div>
+                </div>
+                <div id="commentsSection">
+                    {% for comment in comments %}
+                        <div class="card my-3 shadow-lg" id="comment-{{ comment.id }}">
+                            <div class="card-body">
+                                <strong>{{ comment.user.username }}</strong>
+                                <p>{{ comment.content }}</p>
+                                <small class="text-muted">{{ comment.created_at }}</small>
+
+                                {% if comment.parent %}
+                                    <blockquote class="blockquote mt-3 border-left pl-3">
+                                        <footer class="blockquote-footer">{% trans "Quoted from" %} <strong>{{ comment.parent.user.username }}</strong></footer>
+                                        <p>{{ comment.parent.content }}</p>
+                                    </blockquote>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p>{% trans "No comments yet." %}</p>
+                    {% endfor %}
+                </div>
+            </main>
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="position-sticky">
+                    <h2 class="sidebar-heading text-center mt-3">{% trans 'Tracks' %}</h2>
+                    <div class="accordion" id="tracksAccordion">
+                        {% for tracks in track %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-{{ tracks.id }}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                            data-bs-target="#collapse-{{ tracks.id }}" 
+                                            aria-expanded="false" 
+                                            aria-controls="collapse-{{ tracks.id }}">
+                                            {% if LANGUAGE_CODE == 'ar' %}
+                                                🎯 {{ tracks.title }}
+                                            {% else %}
+                                                🎯 {{ tracks.title_en }}
+                                            {% endif %}
+                                    </button>
+                                </h2>
+                                <div id="collapse-{{ tracks.id }}" class="accordion-collapse collapse" 
+                                    aria-labelledby="heading-{{ tracks.id }}" 
+                                    data-bs-parent="#tracksAccordion">
+                                    <div class="accordion-body">
+                                        <ul class="list-group">
+                                            {% for vido in tracks.videos.all %}
+                                                <li class="list-group-item">
+                                                    <a class="text-decoration-none" href="{% url 'content' course_id=tracks.course.id Video_id=vido.id %}">
+                                                        {% if LANGUAGE_CODE == 'ar' %}
+                                                            🎥 {{ vido.title }}
+                                                        {% else %}
+                                                            🎥 {{ vido.title_en }}
+                                                        {% endif %}
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </nav>
+        </div>
     </div>
 
-    <!-- JavaScript to Submit Comments Without Reloading Page -->
     <script src="{% static 'js/comments.js' %}"></script>
-{% endblock %}
+
+    <script>
+        // Function to handle the comment quoting functionality
+        function quoteComment(commentId) {
+            var parentIdInput = document.getElementById("parent_id");
+            parentIdInput.value = commentId;
+        }
+    </script>
+
+    {% endblock %}
+        

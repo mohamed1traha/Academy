@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="col-md-4">
+    <h3>{% trans "Categories" %}</h3>
+    <ul class="list-group">
+        {% for category in categories %}
+            {% if LANGUAGE_CODE == 'ar' %}
+                <li class="list-group-item">
+                    <a href="{% url 'category_page' category.id %}">{{ category.name }}</a>
+                </li>
+            {% else %}
+                <li class="list-group-item">
+                    <a href="{% url 'category_page' category.id %}">{{ category.name_en }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        <li class="list-group-item">
+            <a href="{% url 'academy_index' %}">{% trans "All" %}</a>
+        </li>
+    </ul>
+</div>
+{% for course in course %}
+<div class="col">
+    <div class="card h-100 shadow-sm border-0">
+        <img src="{{ course.image.url }}" class="card-img-top rounded-top" alt="{{ course.title }}" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+            <h5 class="card-title">
+                {% if LANGUAGE_CODE == 'ar' %}
+                    {{ course.title }}
+                {% else %}
+                    {{ course.title_en }}
+                {% endif %}
+            </h5>
+            <p class="card-text text-muted"><strong>{% trans "Price" %}:</strong> {{ course.price }}</p>
+            <p class="card-text"><small class="text-muted">{% trans "Date added" %}: {{ course.created_at }}</small></p>
+        </div>
+        <div class="card-footer bg-white border-0 text-center">
+            <a href="{% url 'course_page' course.id %}" class="btn btn-primary w-100">{% trans "Details" %}</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

@@ -9,7 +9,12 @@
 <div class="container">
     <p class="profile-link">
         {{ request.user.username }} 
-        <img src="{{ user.profile.profile_picture.url }}" alt="{{ user.username }}'s profile picture" />
+            {% if request.user.profile.profile_picture %}
+                <img src="{{ request.user.profile.profile_picture.url }}" alt="{{ request.user.username }}'s profile picture" class="rounded-circle" width="30" height="30">
+            {% else %}
+                <img src="{% static 'images/default-profile.png' %}" alt="Default profile picture" class="rounded-circle" width="30" height="30">
+            {% endif %}
+        </li>
         <a href="{% url 'edit_profile' request.user.id %}">{% trans "Edit Profile" %}</a>
     </p>
     <div class="container mt-4">
@@ -18,7 +23,7 @@
             <div class="row">
                 {% for course in courses %}
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <a href="{% url 'content' course.id %}" class="text-decoration-none">
+                        <a href="{% url 'tracks' course.id %}" class="text-decoration-none">
                             <div class="card shadow-sm h-100 border-0">
                                 {% if course.image %}
                                     <img src="{{ course.image.url }}" class="card-img-top rounded-top" alt="{{ course.title }}">

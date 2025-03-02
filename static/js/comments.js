@@ -1,14 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("commentForm").addEventListener("submit", function(event) {
-        event.preventDefault();  // منع التحديث الافتراضي للصفحة
-
+        event.preventDefault();  
         let formData = new FormData(this);
 
         fetch(this.action, {
             method: "POST",
             body: formData,
             headers: {
-                "X-Requested-With": "XMLHttpRequest"  // التأكد من أن الطلب هو AJAX
+                "X-Requested-With": "XMLHttpRequest"  
             }
         })
         .then(response => response.json())
@@ -24,28 +23,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     </div>
                 `;
                 document.getElementById("commentsSection").insertAdjacentHTML("afterbegin", commentHTML);
-                document.getElementById("commentForm").reset();  // مسح حقل الإدخال بعد الإرسال
+                document.getElementById("commentForm").reset();  
             }
         })
         .catch(error => console.error("Error:", error));
     });
 });
-function quoteComment(commentId) {
-    // تحديد parent_id في النموذج لتحديد التعليق المقتبس
-    document.getElementById("parent_id").value = commentId;
-
-    // إضافة نص الاقتباس في حقل التعليق
-    var commentText = document.querySelector(`#comment-${commentId} .card-body p`).innerText;
-    var commentForm = document.querySelector('#commentForm textarea');
-    commentForm.value = `اقتباس: ${commentText}\n\n` + commentForm.value;
-}
-
-// JavaScript لإضافة التعليق باستخدام AJAX
 document.getElementById("commentForm").onsubmit = function(event) {
     event.preventDefault();  // منع إعادة تحميل الصفحة
 
     var formData = new FormData(this);
-    fetch("{% url 'content' course.id %}", {
+    fetch("{% url 'content' course.id vido.id %}", {
         method: "POST",
         body: formData,
     }).then(response => response.json())
@@ -67,19 +55,10 @@ document.getElementById("commentForm").onsubmit = function(event) {
                 </div>
             `;
 
-            // إذا كان هناك اقتباس، إظهار التعليق المقتبس
-            if (data.parent_id) {
-                newComment.querySelector(".card-body").innerHTML += `
-                    <blockquote class="blockquote mt-2">
-                        <footer class="blockquote-footer">اقتباس من <strong>${data.parent_user}</strong></footer>
-                        <p>${data.parent_content}</p>
-                    </blockquote>
-                `;
-            }
 
-            // إضافة التعليق إلى أعلى القائمة
+
             commentSection.prepend(newComment);
-            document.getElementById("commentForm").reset();  // مسح الحقول بعد الإرسال
+            document.getElementById("commentForm").reset();  
         }
     });
 };

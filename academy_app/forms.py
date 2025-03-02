@@ -1,6 +1,6 @@
 from django import forms
 # academy_app/forms.py
-from .models import AcademyComment  # تغيير الاسم هنا
+from .models import AcademyComment
 
 
 class CommentForm(forms.ModelForm):
@@ -8,6 +8,6 @@ class CommentForm(forms.ModelForm):
         model = AcademyComment
         fields = ['content']
         widgets = {
-            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'اكتب تعليقك هنا...'}),
+            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
 
